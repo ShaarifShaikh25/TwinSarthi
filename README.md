@@ -3,6 +3,12 @@
 
 ---
 
+## 🚀 Deployment
+
+🔗 Live Demo: 
+
+---
+
 ## 🌍 Overview
 
 TwinSarthi is a Digital Twin platform designed to enable **efficient remote monitoring and management of Antarctic research stations**.
@@ -113,11 +119,6 @@ Simulator → Backend APIs → Database → AI Engine → Dashboard → Alerts
 
 ---
 
-## 🚀 Deployment
-
-🔗 Live Demo: **[Add your deployed link here]**
-
----
 
 ## 🛠️ Setup Instructions
 
