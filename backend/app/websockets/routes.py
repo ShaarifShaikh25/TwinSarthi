@@ -1,6 +1,6 @@
 """websockets/routes.py
 
-WebSocket endpoint: /ws/{station_id}
+WebSocket endpoint: /ws/{station_id} and /ws
 Handles:
 - Validation of station (ensuring station exists or reporting error)
 - Connection registration
@@ -35,6 +35,12 @@ def _station_exists(station_id: str) -> bool:
         return True  # Fallback to allow connection in case DB is transiently unreachable
     finally:
         db.close()
+
+
+@ws_router.websocket("/ws")
+async def websocket_default_endpoint(websocket: WebSocket):
+    """Default WebSocket endpoint connecting to Maitri station for backwards-compatibility."""
+    await websocket_station_endpoint(websocket, "maitri")
 
 
 @ws_router.websocket("/ws/{station_id}")
