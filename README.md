@@ -6,6 +6,11 @@ Developed as part of the **Smart India Hackathon (SIH)** for Antarctic Life-Supp
 ---
 ## Live Demo Link : https://twin-sarthi.vercel.app/
 
+<img width="748" height="500" alt="image" src="https://github.com/user-attachments/assets/15c32d01-4f40-49e9-a008-e277b47f77b7" />
+
+<img width="1917" height="915" alt="image" src="https://github.com/user-attachments/assets/798a9029-0d79-41f5-a670-05b964ebdbd3" />
+<img width="1917" height="902" alt="image" src="https://github.com/user-attachments/assets/49c7d7fe-43d9-4a73-94fe-64b752f875ab" />
+
 ---
 
 ## 🌍 Overview
