@@ -1,0 +1,97 @@
+version: '3.8'
+
+# =====================================================================
+# POLAR-TWIN Production Docker Compose Architecture
+# Services:
+# 1. backend: FastAPI application server + WebSocket gateway
+# 2. postgres: PostgreSQL 16 / TimescaleDB time-series database
+# 3. mqtt: Eclipse Mosquitto IoT sensor ingestion broker
+# =====================================================================
+
+services:
+  # -------------------------------------------------------------------
+  # 1. Database (PostgreSQL / TimescaleDB)
+  # TimescaleDB is fully compatible with standard PostgreSQL and
+  # optimizes high-frequency Antarctic telemetry partitioning.
+  # -------------------------------------------------------------------
+  postgres:
+    # To use TimescaleDB (Recommended for production telemetry time-series):
+    image: timescale/timescaledb:latest-pg16
+    # Alternatively, for standard vanilla PostgreSQL:
+    # image: postgres:16-alpine
+    container_name: polar-twin-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-polar_twin}
+      POSTGRES_USER: ${POSTGRES_USER:-polar_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-polar_password}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-polar_user} -d ${POSTGRES_DB:-polar_twin}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - polar_network
+
+  # -------------------------------------------------------------------
+  # 2. MQTT Ingestion Broker (Eclipse Mosquitto)
+  # Ingestion bridge for IoT sensor simulators and edge transmitters
+  # -------------------------------------------------------------------
+  mqtt:
+    image: eclipse-mosquitto:2
+    container_name: polar-twin-mqtt
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mosquitto_data:/mosquitto/data
+    networks:
+      - polar_network
+
+  # -------------------------------------------------------------------
+  # 3. Backend (FastAPI Core, Digital Twin, Alert Engine, AI Gateway)
+  # -------------------------------------------------------------------
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: polar-twin-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-polar_user}:${POSTGRES_PASSWORD:-polar_password}@postgres:5432/${POSTGRES_DB:-polar_twin}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-polar-twin-production-secret-antigravity}
+      - JWT_ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=60
+      - MQTT_BROKER=mqtt
+      - MQTT_PORT=1883
+      - ENVIRONMENT=production
+      - ALERT_FUEL_CRITICAL_THRESHOLD=20.0
+      - ALERT_FUEL_EMERGENCY_THRESHOLD=10.0
+      - ALERT_TEMP_SAFE_MIN_THRESHOLD=-50.0
+      - ALERT_WIND_MAX_THRESHOLD=40.0
+      - ALERT_GENERATOR_LOAD_MAX_THRESHOLD=95.0
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mqtt:
+        condition: service_started
+    networks:
+      - polar_network
+
+networks:
+  polar_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    name: polar_twin_pg_data
+  mosquitto_data:
+    name: polar_twin_mqtt_data
