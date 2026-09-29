@@ -1,0 +1,10 @@
+{
+  "score_min": 3.008661028647275e-17,
+  "score_max": 0.17749496318756658,
+  "normalization_method": "percentile_inversion",
+  "normalization_note": "0.0=normal, 1.0=highly anomalous. NOT a probability.",
+  "training_percentiles": {
+    "low": 2,
+    "high": 98
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "model_type": "IsolationForest",
+  "model_version": "1.0.0",
+  "project": "POLAR-TWIN",
+  "asset": "Diesel Generator",
+  "data_type": "SYNTHETIC_DATA",
+  "training_timestamp": "2026-09-29T17:03:30.928142",
+  "training_data": "generator_normal_features.csv",
+  "training_rows": 2005,
+  "validation_rows": 430,
+  "test_rows": 430,
+  "feature_count": 13,
+  "features": [
+    "load_adjusted_fuel_deviation",
+    "fuel_efficiency_proxy",
+    "exhaust_temp_rolling_mean_15m",
+    "exhaust_temp_rate_c_per_min",
+    "exhaust_temp_dev_c",
+    "vibration_trend",
+    "vibration_rolling_mean_30m",
+    "combustion_signature_proxy",
+    "combustion_signature_rolling_1h",
+    "load_pct",
+    "rpm",
+    "coolant_temp_c",
+    "oil_pressure_bar"
+  ],
+  "parameters": {
+    "n_estimators": 200,
+    "contamination": 0.01,
+    "max_samples": "auto",
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "random_seed": 42,
+  "chronological_split": true,
+  "split_ratios": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15000000000000005
+  },
+  "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "sklearn_version": "1.9.0",
+  "scaler": "StandardScaler",
+  "scaler_fitted_on": "training_data_only",
+  "contamination_strategy": "auto \u2014 sklearn determines from training data noise, not from anomaly labels"
+}

@@ -1,0 +1,625 @@
+{
+  "project": "POLAR-TWIN",
+  "phase": "Phase 4 \u2014 Multivariate Generator Anomaly Detection",
+  "data_type": "SYNTHETIC_DATA",
+  "model": "IsolationForest",
+  "model_size_kb": 2548.2,
+  "scaler_size_kb": 1.4,
+  "scenarios": [
+    {
+      "scenario": "Case_A_Normal",
+      "data_type": "SYNTHETIC_DATA",
+      "total_samples": 2880,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "false_positive_rate": 0.2219,
+      "false_negative_rate": 0.0,
+      "true_positives": 0,
+      "false_positives": 639,
+      "true_negatives": 2241,
+      "false_negatives": 0,
+      "data_quality_warnings": 0,
+      "persistence_distribution": {
+        "NORMAL": 2075,
+        "PERSISTENT": 639,
+        "TRANSIENT": 166
+      },
+      "events_detected": 5,
+      "events": [
+        {
+          "event_id": "EVT-DG-01-0001",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 00:30:00",
+          "end_time": "2026-01-01 04:43:00",
+          "duration_minutes": 253.0,
+          "peak_anomaly_score": 1.0,
+          "mean_anomaly_score": 0.656,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "CROSS_DOMAIN",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 254
+        },
+        {
+          "event_id": "EVT-DG-01-0002",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 05:25:00",
+          "end_time": "2026-01-01 07:00:00",
+          "duration_minutes": 95.0,
+          "peak_anomaly_score": 0.9196,
+          "mean_anomaly_score": 0.5393,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "MULTI_SIGNAL",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 96
+        },
+        {
+          "event_id": "EVT-DG-01-0003",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 08:25:00",
+          "end_time": "2026-01-01 10:41:00",
+          "duration_minutes": 136.0,
+          "peak_anomaly_score": 0.9148,
+          "mean_anomaly_score": 0.5589,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "CROSS_DOMAIN",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 137
+        },
+        {
+          "event_id": "EVT-DG-01-0004",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 12:14:00",
+          "end_time": "2026-01-01 13:32:00",
+          "duration_minutes": 78.0,
+          "peak_anomaly_score": 1.0,
+          "mean_anomaly_score": 0.7325,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "CROSS_DOMAIN",
+          "supporting_domains": [
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 79
+        },
+        {
+          "event_id": "EVT-DG-01-0005",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 13:56:00",
+          "end_time": "2026-01-01 15:08:00",
+          "duration_minutes": 72.0,
+          "peak_anomaly_score": 0.9861,
+          "mean_anomaly_score": 0.5837,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "MULTI_SIGNAL",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 73
+        }
+      ],
+      "score_mean": 0.3489,
+      "score_max": 1.0,
+      "score_std": 0.2298,
+      "inference_time_ms_per_sample": 0.0157,
+      "evidence_patterns": {
+        "INSUFFICIENT_EVIDENCE": 984,
+        "SINGLE_SIGNAL": 867,
+        "CROSS_DOMAIN": 588,
+        "MULTI_SIGNAL": 441
+      }
+    },
+    {
+      "scenario": "Case_B_Combustion_Degradation",
+      "data_type": "SYNTHETIC_DATA",
+      "total_samples": 2880,
+      "precision": 0.6901,
+      "recall": 0.9882,
+      "f1_score": 0.8127,
+      "false_positive_rate": 0.4437,
+      "false_negative_rate": 0.0118,
+      "true_positives": 1423,
+      "false_positives": 639,
+      "true_negatives": 801,
+      "false_negatives": 17,
+      "detection_delay_minutes": 0,
+      "note_detection": "Model detected before ground truth onset (possible noise).",
+      "data_quality_warnings": 0,
+      "persistence_distribution": {
+        "PERSISTENT": 2062,
+        "NORMAL": 709,
+        "TRANSIENT": 109
+      },
+      "events_detected": 6,
+      "events": [
+        {
+          "event_id": "EVT-DG-01-0001",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 00:30:00",
+          "end_time": "2026-01-01 04:43:00",
+          "duration_minutes": 253.0,
+          "peak_anomaly_score": 1.0,
+          "mean_anomaly_score": 0.656,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "CROSS_DOMAIN",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 254
+        },
+        {
+          "event_id": "EVT-DG-01-0002",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 05:25:00",
+          "end_time": "2026-01-01 07:00:00",
+          "duration_minutes": 95.0,
+          "peak_anomaly_score": 0.9196,
+          "mean_anomaly_score": 0.5393,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "MULTI_SIGNAL",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 96
+        },
+        {
+          "event_id": "EVT-DG-01-0003",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 08:25:00",
+          "end_time": "2026-01-01 10:41:00",
+          "duration_minutes": 136.0,
+          "peak_anomaly_score": 0.9148,
+          "mean_anomaly_score": 0.5589,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "CROSS_DOMAIN",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 137
+        },
+        {
+          "event_id": "EVT-DG-01-0004",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 12:14:00",
+          "end_time": "2026-01-01 13:32:00",
+          "duration_minutes": 78.0,
+          "peak_anomaly_score": 1.0,
+          "mean_anomaly_score": 0.7325,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "CROSS_DOMAIN",
+          "supporting_domains": [
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 79
+        },
+        {
+          "event_id": "EVT-DG-01-0005",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 13:56:00",
+          "end_time": "2026-01-01 15:08:00",
+          "duration_minutes": 72.0,
+          "peak_anomaly_score": 0.9861,
+          "mean_anomaly_score": 0.5837,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "MULTI_SIGNAL",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 73
+        },
+        {
+          "event_id": "EVT-DG-01-0006",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-02 00:17:00",
+          "end_time": "2026-01-02 23:59:00",
+          "duration_minutes": 1422.0,
+          "peak_anomaly_score": 1.0,
+          "mean_anomaly_score": 0.9791,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "CROSS_DOMAIN",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 1423
+        }
+      ],
+      "score_mean": 0.7179,
+      "score_max": 1.0,
+      "score_std": 0.3116,
+      "inference_time_ms_per_sample": 0.0101,
+      "evidence_patterns": {
+        "CROSS_DOMAIN": 1943,
+        "MULTI_SIGNAL": 344,
+        "SINGLE_SIGNAL": 327,
+        "INSUFFICIENT_EVIDENCE": 266
+      }
+    },
+    {
+      "scenario": "Case_C_Communication_Gap",
+      "data_type": "SYNTHETIC_DATA",
+      "total_samples": 2880,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "false_positive_rate": 0.2274,
+      "false_negative_rate": 0.0,
+      "true_positives": 0,
+      "false_positives": 655,
+      "true_negatives": 2225,
+      "false_negatives": 0,
+      "data_quality_warnings": 478,
+      "persistence_distribution": {
+        "NORMAL": 2069,
+        "PERSISTENT": 655,
+        "TRANSIENT": 156
+      },
+      "events_detected": 6,
+      "events": [
+        {
+          "event_id": "EVT-DG-01-0001",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 00:30:00",
+          "end_time": "2026-01-01 04:43:00",
+          "duration_minutes": 253.0,
+          "peak_anomaly_score": 1.0,
+          "mean_anomaly_score": 0.656,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "CROSS_DOMAIN",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 254
+        },
+        {
+          "event_id": "EVT-DG-01-0002",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 05:25:00",
+          "end_time": "2026-01-01 07:00:00",
+          "duration_minutes": 95.0,
+          "peak_anomaly_score": 0.9196,
+          "mean_anomaly_score": 0.5393,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "MULTI_SIGNAL",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 96
+        },
+        {
+          "event_id": "EVT-DG-01-0003",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 08:25:00",
+          "end_time": "2026-01-01 10:41:00",
+          "duration_minutes": 136.0,
+          "peak_anomaly_score": 0.9148,
+          "mean_anomaly_score": 0.5589,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "CROSS_DOMAIN",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 137
+        },
+        {
+          "event_id": "EVT-DG-01-0004",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 12:14:00",
+          "end_time": "2026-01-01 13:32:00",
+          "duration_minutes": 78.0,
+          "peak_anomaly_score": 1.0,
+          "mean_anomaly_score": 0.7325,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "CROSS_DOMAIN",
+          "supporting_domains": [
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 79
+        },
+        {
+          "event_id": "EVT-DG-01-0005",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 13:56:00",
+          "end_time": "2026-01-01 15:08:00",
+          "duration_minutes": 72.0,
+          "peak_anomaly_score": 0.9861,
+          "mean_anomaly_score": 0.5837,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "MULTI_SIGNAL",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 73
+        },
+        {
+          "event_id": "EVT-DG-01-0006",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-02 00:03:00",
+          "end_time": "2026-01-02 00:18:00",
+          "duration_minutes": 15.0,
+          "peak_anomaly_score": 0.9878,
+          "mean_anomaly_score": 0.5485,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "SINGLE_SIGNAL",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 16
+        }
+      ],
+      "score_mean": 0.3126,
+      "score_max": 1.0,
+      "score_std": 0.2561,
+      "inference_time_ms_per_sample": 0.0103,
+      "evidence_patterns": {
+        "SINGLE_SIGNAL": 1062,
+        "INSUFFICIENT_EVIDENCE": 773,
+        "CROSS_DOMAIN": 586,
+        "MULTI_SIGNAL": 459
+      }
+    },
+    {
+      "scenario": "Case_D_Sensor_Fault",
+      "data_type": "SYNTHETIC_DATA",
+      "total_samples": 2880,
+      "precision": 0.0491,
+      "recall": 0.0286,
+      "f1_score": 0.0362,
+      "false_positive_rate": 0.3698,
+      "false_negative_rate": 0.9714,
+      "true_positives": 33,
+      "false_positives": 639,
+      "true_negatives": 1089,
+      "false_negatives": 1119,
+      "detection_delay_minutes": 0,
+      "note_detection": "Model detected before ground truth onset (possible noise).",
+      "data_quality_warnings": 0,
+      "persistence_distribution": {
+        "NORMAL": 1978,
+        "PERSISTENT": 672,
+        "TRANSIENT": 230
+      },
+      "events_detected": 6,
+      "events": [
+        {
+          "event_id": "EVT-DG-01-0001",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 00:30:00",
+          "end_time": "2026-01-01 04:43:00",
+          "duration_minutes": 253.0,
+          "peak_anomaly_score": 1.0,
+          "mean_anomaly_score": 0.656,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "CROSS_DOMAIN",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 254
+        },
+        {
+          "event_id": "EVT-DG-01-0002",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 05:25:00",
+          "end_time": "2026-01-01 07:00:00",
+          "duration_minutes": 95.0,
+          "peak_anomaly_score": 0.9196,
+          "mean_anomaly_score": 0.5393,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "MULTI_SIGNAL",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 96
+        },
+        {
+          "event_id": "EVT-DG-01-0003",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 08:25:00",
+          "end_time": "2026-01-01 10:41:00",
+          "duration_minutes": 136.0,
+          "peak_anomaly_score": 0.9148,
+          "mean_anomaly_score": 0.5589,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "CROSS_DOMAIN",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 137
+        },
+        {
+          "event_id": "EVT-DG-01-0004",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 12:14:00",
+          "end_time": "2026-01-01 13:32:00",
+          "duration_minutes": 78.0,
+          "peak_anomaly_score": 1.0,
+          "mean_anomaly_score": 0.7325,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "CROSS_DOMAIN",
+          "supporting_domains": [
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 79
+        },
+        {
+          "event_id": "EVT-DG-01-0005",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-01 13:56:00",
+          "end_time": "2026-01-01 15:08:00",
+          "duration_minutes": 72.0,
+          "peak_anomaly_score": 0.9861,
+          "mean_anomaly_score": 0.5837,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "MULTI_SIGNAL",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 73
+        },
+        {
+          "event_id": "EVT-DG-01-0006",
+          "asset_id": "DG-01",
+          "data_type": "SYNTHETIC_DATA",
+          "start_time": "2026-01-02 21:09:00",
+          "end_time": "2026-01-02 21:41:00",
+          "duration_minutes": 32.0,
+          "peak_anomaly_score": 1.0,
+          "mean_anomaly_score": 0.4003,
+          "risk_level": "CRITICAL",
+          "evidence_pattern": "SINGLE_SIGNAL",
+          "supporting_domains": [
+            "cross_domain",
+            "fuel",
+            "operating_context",
+            "thermal",
+            "vibration"
+          ],
+          "data_quality_warning": false,
+          "num_samples": 33
+        }
+      ],
+      "score_mean": 0.4076,
+      "score_max": 1.0,
+      "score_std": 0.2085,
+      "inference_time_ms_per_sample": 0.0101,
+      "evidence_patterns": {
+        "SINGLE_SIGNAL": 1174,
+        "MULTI_SIGNAL": 643,
+        "CROSS_DOMAIN": 618,
+        "INSUFFICIENT_EVIDENCE": 445
+      }
+    }
+  ]
+}

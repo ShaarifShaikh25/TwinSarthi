@@ -1,0 +1,25 @@
+{
+  "model_features": [
+    "load_adjusted_fuel_deviation",
+    "fuel_efficiency_proxy",
+    "exhaust_temp_rolling_mean_15m",
+    "exhaust_temp_rate_c_per_min",
+    "exhaust_temp_dev_c",
+    "vibration_trend",
+    "vibration_rolling_mean_30m",
+    "combustion_signature_proxy",
+    "combustion_signature_rolling_1h",
+    "load_pct",
+    "rpm",
+    "coolant_temp_c",
+    "oil_pressure_bar"
+  ],
+  "decision_context_fields": [
+    "communication_gap_flag"
+  ],
+  "ground_truth_fields": [
+    "anomaly_label",
+    "anomaly_type"
+  ],
+  "note": "ground_truth_fields are NEVER used as model inputs."
+}
