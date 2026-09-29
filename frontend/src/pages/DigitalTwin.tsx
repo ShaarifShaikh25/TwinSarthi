@@ -25,44 +25,216 @@ const Station3DModule: React.FC<{
   status: string;
   isSelected: boolean;
   onClick: () => void;
-}> = ({ position, color, label, status, isSelected, onClick }) => {
+  type?: 'habitation' | 'power' | 'lab' | 'fuel' | 'water' | 'comms';
+}> = ({ position, color, label, status, isSelected, onClick, type = 'habitation' }) => {
+  const [hovered, setHovered] = useState(false);
+  
   return (
-    <group position={position} onClick={onClick}>
-      {/* Station Building Block */}
-      <mesh castShadow receiveShadow>
-        <boxGeometry args={[2.5, 1.2, 1.8]} />
-        <meshStandardMaterial
-          color={isSelected ? '#0D9488' : color}
-          metalness={0.2}
-          roughness={0.4}
-          wireframe={isSelected}
-        />
+    <group 
+      position={position} 
+      onClick={onClick}
+      onPointerOver={(e) => { e.stopPropagation(); setHovered(true); }}
+      onPointerOut={(e) => { e.stopPropagation(); setHovered(false); }}
+    >
+      {/* Module Base Pad (Concrete-like) */}
+      <mesh position={[0, -0.62, 0]} receiveShadow>
+        <boxGeometry args={[3.2, 0.05, 2.6]} />
+        <meshStandardMaterial color="#94A3B8" roughness={0.9} />
       </mesh>
 
-      {/* Building Base outline */}
-      <mesh position={[0, -0.65, 0]}>
-        <boxGeometry args={[2.7, 0.1, 2.0]} />
-        <meshStandardMaterial color="#CBD5E1" />
+      {/* HABITATION */}
+      {type === 'habitation' && (
+        <group>
+          {/* Main block */}
+          <mesh castShadow receiveShadow position={[0, 0.1, 0]}>
+            <boxGeometry args={[2.6, 1.4, 1.6]} />
+            <meshStandardMaterial color="#1E40AF" roughness={0.4} />
+          </mesh>
+          {/* Roof overhang */}
+          <mesh castShadow receiveShadow position={[0, 0.85, 0]}>
+            <boxGeometry args={[2.7, 0.1, 1.7]} />
+            <meshStandardMaterial color="#CBD5E1" roughness={0.5} />
+          </mesh>
+          {/* Roof HVAC units */}
+          <mesh castShadow receiveShadow position={[-0.8, 0.95, 0]}>
+            <boxGeometry args={[0.4, 0.2, 0.4]} />
+            <meshStandardMaterial color="#64748B" roughness={0.7} />
+          </mesh>
+          <mesh castShadow receiveShadow position={[0.8, 0.95, 0.3]}>
+            <boxGeometry args={[0.3, 0.2, 0.3]} />
+            <meshStandardMaterial color="#64748B" roughness={0.7} />
+          </mesh>
+          {/* Side extension/airlock */}
+          <mesh castShadow receiveShadow position={[0, -0.2, 0.9]}>
+            <boxGeometry args={[0.8, 0.8, 0.4]} />
+            <meshStandardMaterial color="#475569" roughness={0.5} />
+          </mesh>
+        </group>
+      )}
+
+      {/* LAB */}
+      {type === 'lab' && (
+        <group>
+          <mesh castShadow receiveShadow position={[0, 0, 0]}>
+            <boxGeometry args={[2.4, 1.2, 1.8]} />
+            <meshStandardMaterial color="#0F172A" roughness={0.3} />
+          </mesh>
+          {/* Roof overhang */}
+          <mesh castShadow receiveShadow position={[0, 0.65, 0]}>
+            <boxGeometry args={[2.5, 0.1, 1.9]} />
+            <meshStandardMaterial color="#94A3B8" roughness={0.4} />
+          </mesh>
+          {/* Skylight / observation deck */}
+          <mesh castShadow receiveShadow position={[0, 0.8, 0]}>
+            <boxGeometry args={[1.2, 0.2, 0.8]} />
+            <meshStandardMaterial color="#38BDF8" roughness={0.1} metalness={0.8} />
+          </mesh>
+          {/* Antenna */}
+          <mesh castShadow receiveShadow position={[0.8, 0.9, -0.6]}>
+            <cylinderGeometry args={[0.02, 0.02, 0.6]} />
+            <meshStandardMaterial color="#E2E8F0" />
+          </mesh>
+        </group>
+      )}
+
+      {/* POWER */}
+      {type === 'power' && (
+        <group position={[0, -0.1, 0]}>
+          {/* Main Generator Housing */}
+          <mesh castShadow receiveShadow position={[0, 0.3, 0]}>
+            <boxGeometry args={[2.2, 1.0, 1.8]} />
+            <meshStandardMaterial color="#334155" roughness={0.6} />
+          </mesh>
+          {/* Exhaust Stacks */}
+          <mesh castShadow receiveShadow position={[-0.6, 1.1, -0.4]}>
+            <cylinderGeometry args={[0.15, 0.15, 0.8]} />
+            <meshStandardMaterial color="#64748B" />
+          </mesh>
+          <mesh castShadow receiveShadow position={[0.6, 1.1, -0.4]}>
+            <cylinderGeometry args={[0.15, 0.15, 0.8]} />
+            <meshStandardMaterial color="#64748B" />
+          </mesh>
+          {/* Side Vents */}
+          <mesh castShadow receiveShadow position={[0, 0.3, 0.95]}>
+            <boxGeometry args={[1.4, 0.5, 0.1]} />
+            <meshStandardMaterial color="#1E293B" />
+          </mesh>
+        </group>
+      )}
+
+      {/* FUEL */}
+      {type === 'fuel' && (
+        <group position={[0, 0.1, 0]}>
+          {/* Tank 1 */}
+          <mesh castShadow receiveShadow position={[-0.8, 0.3, 0]}>
+            <cylinderGeometry args={[0.6, 0.6, 1.4, 24]} />
+            <meshStandardMaterial color="#F8FAFC" roughness={0.3} />
+          </mesh>
+          <mesh castShadow receiveShadow position={[-0.8, 1.05, 0]}>
+            <cylinderGeometry args={[0.62, 0.62, 0.1, 24]} />
+            <meshStandardMaterial color="#CBD5E1" />
+          </mesh>
+          {/* Tank 2 */}
+          <mesh castShadow receiveShadow position={[0.8, 0.3, 0]}>
+            <cylinderGeometry args={[0.6, 0.6, 1.4, 24]} />
+            <meshStandardMaterial color="#F8FAFC" roughness={0.3} />
+          </mesh>
+          <mesh castShadow receiveShadow position={[0.8, 1.05, 0]}>
+            <cylinderGeometry args={[0.62, 0.62, 0.1, 24]} />
+            <meshStandardMaterial color="#CBD5E1" />
+          </mesh>
+          {/* Connecting pipes */}
+          <mesh castShadow receiveShadow position={[0, 0.1, 0]} rotation={[0, 0, Math.PI / 2]}>
+            <cylinderGeometry args={[0.08, 0.08, 1.6]} />
+            <meshStandardMaterial color="#94A3B8" />
+          </mesh>
+        </group>
+      )}
+
+      {/* COMMS */}
+      {type === 'comms' && (
+        <group>
+          {/* Operations base */}
+          <mesh castShadow receiveShadow position={[0, -0.2, 0]}>
+            <boxGeometry args={[1.8, 0.8, 1.8]} />
+            <meshStandardMaterial color="#1E293B" roughness={0.5} />
+          </mesh>
+          <mesh castShadow receiveShadow position={[0, 0.25, 0]}>
+            <boxGeometry args={[1.9, 0.1, 1.9]} />
+            <meshStandardMaterial color="#CBD5E1" />
+          </mesh>
+          {/* Central Mast */}
+          <mesh castShadow receiveShadow position={[0, 0.9, 0]}>
+            <cylinderGeometry args={[0.2, 0.3, 1.2, 8]} />
+            <meshStandardMaterial color="#64748B" />
+          </mesh>
+          {/* Radome Dome */}
+          <mesh castShadow receiveShadow position={[0, 1.9, 0]}>
+            <sphereGeometry args={[0.7, 32, 16]} />
+            <meshStandardMaterial color="#F1F5F9" roughness={0.4} />
+          </mesh>
+          {/* Thin top antenna */}
+          <mesh castShadow receiveShadow position={[0, 2.8, 0]}>
+            <cylinderGeometry args={[0.02, 0.02, 0.6]} />
+            <meshStandardMaterial color="#EF4444" />
+          </mesh>
+        </group>
+      )}
+
+      {/* WATER/WASTE */}
+      {type === 'water' && (
+        <group position={[0, -0.1, 0]}>
+          {/* Treatment building */}
+          <mesh castShadow receiveShadow position={[0.6, 0.2, 0]}>
+            <boxGeometry args={[1.2, 1.0, 1.4]} />
+            <meshStandardMaterial color="#475569" roughness={0.5} />
+          </mesh>
+          <mesh castShadow receiveShadow position={[0.6, 0.75, 0]}>
+            <boxGeometry args={[1.3, 0.1, 1.5]} />
+            <meshStandardMaterial color="#CBD5E1" />
+          </mesh>
+          {/* Holding Tank */}
+          <mesh castShadow receiveShadow position={[-0.6, 0.1, 0]}>
+            <cylinderGeometry args={[0.7, 0.7, 1.2, 24]} />
+            <meshStandardMaterial color="#94A3B8" roughness={0.4} />
+          </mesh>
+        </group>
+      )}
+
+      {/* Hover Selection Outline */}
+      {isSelected && (
+        <mesh position={[0, -0.58, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+          <ringGeometry args={[1.6, 1.8, 32]} />
+          <meshBasicMaterial color="#0D9488" />
+        </mesh>
+      )}
+
+      {/* Connector Line to Label */}
+      <mesh position={[0, 1.5, 0]}>
+        <cylinderGeometry args={[0.01, 0.01, 1.8]} />
+        <meshBasicMaterial color={isSelected ? '#0D9488' : '#94A3B8'} />
       </mesh>
 
-      {/* Status LED Beacon */}
-      <mesh position={[1.0, 0.7, 0.7]}>
-        <sphereGeometry args={[0.15, 16, 16]} />
-        <meshBasicMaterial
-          color={status === 'CRITICAL' ? '#EF6461' : status === 'WARNING' ? '#F59E0B' : '#15803D'}
-        />
-      </mesh>
-
-      {/* HTML Label Floating Above */}
-      <Html position={[0, 1.1, 0]} center distanceFactor={12}>
+      {/* Clean Floating Label */}
+      <Html position={[0, 3.2, 0]} center distanceFactor={14} zIndexRange={[100, 0]}>
         <div
-          className={`px-2 py-0.5 rounded text-[10px] font-mono whitespace-nowrap cursor-pointer transition-all ${
-            isSelected
-              ? 'bg-[#0D9488] text-white font-bold shadow-md scale-110'
-              : 'bg-white/95 text-[#1E293B] border border-slate-300 font-semibold shadow-xs'
+          className={`flex flex-col items-center cursor-pointer transition-all duration-300 ${
+            isSelected ? 'scale-110' : hovered ? 'scale-105' : 'scale-100'
           }`}
         >
-          {label}
+          <div className={`px-3 py-1.5 rounded-sm text-xs font-sans tracking-wide whitespace-nowrap shadow-xl backdrop-blur-md border ${
+            isSelected
+              ? 'bg-[#0F172A]/95 text-white border-[#0D9488] shadow-[#0D9488]/30'
+              : 'bg-[#1E293B]/90 text-slate-200 border-slate-600'
+          }`}>
+            <div className="flex items-center gap-2">
+              <div className={`w-2 h-2 rounded-full ${
+                status === 'CRITICAL' ? 'bg-[#EF6461]' : status === 'WARNING' ? 'bg-[#F59E0B]' : 'bg-[#10B981]'
+              } ${isSelected ? 'animate-pulse' : ''}`} />
+              <span className="font-semibold">{label}</span>
+            </div>
+            {isSelected && <div className="text-[9px] text-[#38BDF8] mt-0.5 text-center uppercase tracking-widest">Selected</div>}
+          </div>
         </div>
       </Html>
     </group>
@@ -139,70 +311,124 @@ export const DigitalTwin: React.FC = () => {
                   </div>
                 }
               >
-                <Canvas camera={{ position: [6, 8, 10], fov: 45 }}>
-                  <ambientLight intensity={0.9} />
-                  <directionalLight position={[10, 15, 5]} intensity={1.4} castShadow />
-                  <pointLight position={[-10, 10, -10]} intensity={0.6} />
+                <Canvas shadows camera={{ position: [14, 16, 20], fov: 38 }}>
+                  <fog attach="fog" args={['#F1F5F9', 25, 55]} />
+                  <ambientLight intensity={0.5} />
+                  <directionalLight 
+                    position={[20, 25, 10]} 
+                    intensity={1.8} 
+                    castShadow 
+                    shadow-mapSize={[2048, 2048]}
+                    shadow-camera-far={60}
+                    shadow-camera-left={-20}
+                    shadow-camera-right={20}
+                    shadow-camera-top={20}
+                    shadow-camera-bottom={-20}
+                    shadow-bias={-0.0001}
+                  />
+                  <pointLight position={[-15, 15, -15]} intensity={0.3} color="#94A3B8" />
 
-                  {/* Ground Plane */}
+                  {/* Snow Ground Plane */}
                   <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.7, 0]} receiveShadow>
-                    <planeGeometry args={[40, 40]} />
-                    <meshStandardMaterial color="#CBD5E1" roughness={0.9} />
+                    <planeGeometry args={[80, 80]} />
+                    <meshStandardMaterial color="#F4F7FA" roughness={0.9} metalness={0.05} />
                   </mesh>
 
-                  {/* 3D Station Buildings */}
+                  {/* Central Base Platform / Main Campus Foundation */}
+                  <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.68, 0]} receiveShadow>
+                    <boxGeometry args={[18, 14, 0.04]} />
+                    <meshStandardMaterial color="#E2E8F0" roughness={1} />
+                  </mesh>
+
+                  {/* Concrete/Packed Snow Paths */}
+                  <group position={[0, -0.65, 0]}>
+                    {/* Main central spine */}
+                    <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+                      <planeGeometry args={[14, 1.4]} />
+                      <meshStandardMaterial color="#CBD5E1" roughness={0.9} />
+                    </mesh>
+                    {/* Path to Hab/Lab */}
+                    <mesh rotation={[-Math.PI / 2, 0, Math.PI / 2]} position={[2.5, 0, -1]} receiveShadow>
+                      <planeGeometry args={[8, 1.4]} />
+                      <meshStandardMaterial color="#CBD5E1" roughness={0.9} />
+                    </mesh>
+                    {/* Path to Power/Fuel */}
+                    <mesh rotation={[-Math.PI / 2, 0, Math.PI / 2]} position={[-3, 0, -0.5]} receiveShadow>
+                      <planeGeometry args={[7, 1.4]} />
+                      <meshStandardMaterial color="#CBD5E1" roughness={0.9} />
+                    </mesh>
+                  </group>
+
+                  {/* 3D Station Buildings - Campus Layout */}
                   <Suspense fallback={null}>
+                    {/* Right Zone: Living & Research */}
                     <Station3DModule
-                      position={[-3, 0, 0]}
-                      color="#38BDF8"
-                      label="Habitation Module"
+                      position={[2.5, 0, 1.5]}
+                      color="#1E40AF"
+                      label="Main Station (Habitation)"
                       status="NORMAL"
+                      type="habitation"
                       isSelected={selectedEquipmentId === 'HVAC-01'}
                       onClick={() => setSelectedEquipmentId('HVAC-01')}
                     />
                     <Station3DModule
-                      position={[0, 0, 0]}
-                      color="#F59E0B"
-                      label="Power House G1-G4"
+                      position={[2.5, 0, -3.5]}
+                      color="#0F172A"
+                      label="Research & Living"
+                      status="CRITICAL"
+                      type="lab"
+                      isSelected={selectedEquipmentId === 'HVAC-02'}
+                      onClick={() => setSelectedEquipmentId('HVAC-02')}
+                    />
+
+                    {/* Left Zone: Utilities & Power */}
+                    <Station3DModule
+                      position={[-3, 0, 2]}
+                      color="#334155"
+                      label="Power Generation"
                       status="WARNING"
+                      type="power"
                       isSelected={selectedEquipmentId === 'GEN-01' || selectedEquipmentId === 'GEN-02'}
                       onClick={() => setSelectedEquipmentId('GEN-01')}
                     />
                     <Station3DModule
-                      position={[3, 0, 0]}
-                      color="#EF6461"
-                      label="Science Lab Module"
-                      status="CRITICAL"
-                      isSelected={selectedEquipmentId === 'HVAC-02'}
-                      onClick={() => setSelectedEquipmentId('HVAC-02')}
-                    />
-                    <Station3DModule
-                      position={[0, 0, -3.5]}
-                      color="#15803D"
-                      label="Exterior Fuel Depot"
+                      position={[-3, 0, -2.5]}
+                      color="#F8FAFC"
+                      label="Fuel Storage"
                       status="NORMAL"
+                      type="fuel"
                       isSelected={selectedEquipmentId === 'FUEL-01'}
                       onClick={() => setSelectedEquipmentId('FUEL-01')}
                     />
+
+                    {/* Outer Zones */}
                     <Station3DModule
-                      position={[-3, 0, -3.5]}
-                      color="#38BDF8"
-                      label="Meltwater Intake"
+                      position={[-7, 0, 0]}
+                      color="#475569"
+                      label="Water & Waste"
                       status="NORMAL"
+                      type="water"
                       isSelected={selectedEquipmentId === 'WTR-01'}
                       onClick={() => setSelectedEquipmentId('WTR-01')}
                     />
                     <Station3DModule
-                      position={[3, 0, -3.5]}
-                      color="#0D9488"
-                      label="Satellite Radome"
+                      position={[7, 0, -1]}
+                      color="#1E293B"
+                      label="Communication"
                       status="NORMAL"
+                      type="comms"
                       isSelected={selectedEquipmentId === 'COM-01'}
                       onClick={() => setSelectedEquipmentId('COM-01')}
                     />
                   </Suspense>
 
-                  <OrbitControls enablePan enableZoom maxPolarAngle={Math.PI / 2.1} />
+                  <OrbitControls 
+                    enablePan={true} 
+                    enableZoom={true} 
+                    maxPolarAngle={Math.PI / 2.2} 
+                    minDistance={8} 
+                    maxDistance={40} 
+                  />
                 </Canvas>
               </ErrorBoundary>
 
