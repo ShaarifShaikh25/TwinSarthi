@@ -24,17 +24,17 @@ export function getStatusBadgeClass(status: string): string {
     case 'NORMAL':
     case 'SUFFICIENT':
     case 'APPROVED':
-      return 'bg-emerald-50 text-emerald-700 border-emerald-200/80';
+      return 'bg-emerald-50 text-emerald-800 border-emerald-200';
     case 'WARNING':
     case 'MEDIUM':
     case 'PENDING RESUPPLY':
     case 'MODIFIED':
-      return 'bg-amber-50 text-amber-700 border-amber-200/80';
+      return 'bg-amber-50 text-amber-800 border-amber-200';
     case 'CRITICAL':
     case 'HIGH':
     case 'CRITICAL SHORTAGE':
     case 'REJECTED':
-      return 'bg-rose-50 text-rose-700 border-rose-200/80';
+      return 'bg-rose-50 text-rose-800 border-rose-200';
     case 'OFFLINE':
     default:
       return 'bg-slate-100 text-slate-600 border-slate-200';

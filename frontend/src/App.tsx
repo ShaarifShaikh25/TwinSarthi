@@ -13,14 +13,12 @@ import { RiskCenter } from './pages/RiskCenter';
 import { WhatIfSimulator } from './pages/WhatIfSimulator';
 import { RefreshCw } from 'lucide-react';
 
-// Lazy load 3D DigitalTwin page so Three.js bundle evaluation never blocks main app rendering
-const DigitalTwin = lazy(() =>
-  import('./pages/DigitalTwin').then((module) => ({ default: module.DigitalTwin }))
-);
+// Lazy load 3D DigitalTwin page for performance
+const DigitalTwin = lazy(() => import('./pages/DigitalTwin'));
 
 const LoadingFallback: React.FC = () => (
-  <div className="flex items-center justify-center min-h-[400px] text-slate-500 font-mono text-xs gap-2">
-    <RefreshCw className="w-5 h-5 text-teal-600 animate-spin" />
+  <div className="flex items-center justify-center min-h-[400px] text-slate-500 text-xs gap-2">
+    <RefreshCw className="w-5 h-5 text-[#0D9488] animate-spin" />
     <span>Loading Station Digital Twin Module...</span>
   </div>
 );
@@ -30,7 +28,7 @@ export const App: React.FC = () => {
     <ErrorBoundary>
       <Router>
         <StationProvider>
-          <div className="min-h-screen bg-[#F4F7FA] text-[#183153] flex flex-col font-sans">
+          <div className="min-h-screen bg-[#F1F5F9] text-[#1E293B] flex flex-col font-sans">
             {/* Top Mission Command Header */}
             <Header />
 
@@ -38,7 +36,7 @@ export const App: React.FC = () => {
             <div className="flex-1 flex flex-col md:flex-row min-h-[calc(100vh-57px)]">
               <Sidebar />
 
-              <main className="flex-1 overflow-y-auto bg-[#F4F7FA] p-2">
+              <main className="flex-1 overflow-y-auto bg-[#F1F5F9] p-2">
                 <ErrorBoundary>
                   <Suspense fallback={<LoadingFallback />}>
                     <Routes>

@@ -40,19 +40,19 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 px-4 py-2.5 flex flex-wrap items-center justify-between gap-4 shadow-xs">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#DCE4ED] px-4 py-2.5 flex flex-wrap items-center justify-between gap-4 shadow-xs">
       {/* Brand & Station Selector */}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 bg-teal-50 text-teal-700 rounded border border-teal-200">
-            <Radio className="w-5 h-5 animate-pulse text-teal-600" />
+          <div className="p-1.5 bg-[#E8EEF5] text-[#0D9488] rounded border border-[#DCE4ED]">
+            <Radio className="w-5 h-5 animate-pulse text-[#0D9488]" />
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-extrabold tracking-wider text-[#183153] font-mono">
+              <span className="text-sm font-extrabold tracking-wider text-[#172B4D]">
                 POLAR-TWIN
               </span>
-              <span className="text-[10px] px-1.5 py-0.2 bg-teal-50 text-teal-700 font-mono rounded border border-teal-200 font-bold">
+              <span className="text-[10px] px-1.5 py-0.2 bg-[#E8EEF5] text-[#0D9488] font-bold rounded border border-[#DCE4ED]">
                 NCPOR
               </span>
             </div>
@@ -61,14 +61,14 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Station Selector Buttons */}
-        <div className="flex items-center bg-slate-100 p-1 rounded-md border border-slate-200">
+        <div className="flex items-center bg-[#F1F5F9] p-1 rounded-md border border-[#DCE4ED] text-xs">
           {stations.map((st) => (
             <button
               key={st.id}
               onClick={() => setSelectedStationId(st.id)}
-              className={`px-3 py-1 text-xs font-mono font-medium rounded transition-all flex items-center gap-1.5 ${
+              className={`px-3 py-1 font-medium rounded transition-all flex items-center gap-1.5 ${
                 selectedStationId === st.id
-                  ? 'bg-teal-600 text-white shadow-xs font-bold'
+                  ? 'bg-[#0D9488] text-white shadow-xs font-bold'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
               }`}
             >
@@ -81,28 +81,28 @@ export const Header: React.FC = () => {
       </div>
 
       {/* Live Metrics Ticker */}
-      <div className="hidden lg:flex items-center gap-5 bg-slate-50 px-4 py-1.5 rounded-md border border-slate-200 font-mono text-xs">
+      <div className="hidden lg:flex items-center gap-5 bg-[#E8EEF5] px-4 py-1.5 rounded-md border border-[#DCE4ED] text-xs">
         <div className="flex items-center gap-1.5 text-slate-700">
-          <Thermometer className="w-4 h-4 text-teal-600" />
-          <span className="text-slate-500">Ambient:</span>
-          <span className="font-bold text-[#183153]">{formatTemp(telemetry.temperature)}</span>
+          <Thermometer className="w-4 h-4 text-[#0D9488]" />
+          <span className="text-slate-500 font-medium">Ambient:</span>
+          <span className="font-bold text-[#172B4D] font-mono">{formatTemp(telemetry.temperature)}</span>
         </div>
 
         <div className="flex items-center gap-1.5 text-slate-700">
-          <Wind className="w-4 h-4 text-sky-600" />
-          <span className="text-slate-500">Wind:</span>
-          <span className="font-bold text-slate-800">{telemetry.windSpeed || 42} km/h</span>
+          <Wind className="w-4 h-4 text-[#38BDF8]" />
+          <span className="text-slate-500 font-medium">Wind:</span>
+          <span className="font-bold text-slate-800 font-mono">{telemetry.windSpeed || 42} km/h</span>
         </div>
 
         <div className="flex items-center gap-1.5 text-slate-700">
-          <Zap className="w-4 h-4 text-amber-600" />
-          <span className="text-slate-500">Microgrid Fuel:</span>
-          <span className="font-bold text-emerald-700">{telemetry.fuel}%</span>
+          <Zap className="w-4 h-4 text-[#F59E0B]" />
+          <span className="text-slate-500 font-medium">Microgrid Fuel:</span>
+          <span className="font-bold text-emerald-700 font-mono">{telemetry.fuel}%</span>
         </div>
 
-        <div className="flex items-center gap-1.5 border-l border-slate-200 pl-4">
-          <span className="text-slate-500">Continuity:</span>
-          <span className={`font-bold ${getContinuityScoreColor(currentStation.continuityScore)}`}>
+        <div className="flex items-center gap-1.5 border-l border-[#DCE4ED] pl-4">
+          <span className="text-slate-500 font-medium">Continuity:</span>
+          <span className={`font-bold font-mono ${getContinuityScoreColor(currentStation.continuityScore)}`}>
             {currentStation.continuityScore}%
           </span>
         </div>
@@ -112,7 +112,7 @@ export const Header: React.FC = () => {
       <div className="flex items-center gap-3">
         {/* Connection status mode indicator */}
         {connectionState.mode === 'LIVE' ? (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono bg-emerald-50 text-emerald-800 border border-emerald-200 rounded">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono bg-emerald-50 text-emerald-800 border border-emerald-200 rounded font-semibold">
             <span className="w-2 h-2 rounded-full bg-emerald-600 animate-ping" />
             WS LIVE
           </span>
@@ -124,15 +124,15 @@ export const Header: React.FC = () => {
         <button
           onClick={handleSimulateClick}
           disabled={isSimulating}
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-teal-800 border border-slate-300 rounded text-xs font-mono font-semibold transition-colors"
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-[#E8EEF5] hover:bg-slate-200 text-[#172B4D] border border-[#DCE4ED] rounded text-xs font-semibold transition-colors"
           title="Triggers FastAPI POST /simulate endpoint"
         >
-          <RefreshCw className={`w-3.5 h-3.5 ${isSimulating ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-3.5 h-3.5 text-[#0D9488] ${isSimulating ? 'animate-spin' : ''}`} />
           Run Simulation Engine
         </button>
 
         {/* UTC Clock */}
-        <div className="hidden sm:block text-xs font-mono text-slate-600 bg-slate-100 px-2.5 py-1 rounded border border-slate-200 font-medium">
+        <div className="hidden sm:block text-xs font-mono text-slate-600 bg-[#E8EEF5] px-2.5 py-1 rounded border border-[#DCE4ED] font-semibold">
           {utcTime || '00:00:00 UTC'}
         </div>
       </div>
