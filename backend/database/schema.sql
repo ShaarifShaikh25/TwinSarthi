@@ -1,0 +1,2 @@
+-- PostgreSQL schema placeholder for POLAR‑TWIN
+-- Tables will be created via Alembic migrations.
